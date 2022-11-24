@@ -1,38 +1,24 @@
 import "./ListItem.css";
-import { useState } from "react";
+//import { useState } from "react";
+//import { AddListItem } from "../AddListItem/AddListItem";
 
-export function ListItem() {
-    const [items, setItems] = useState([]);
-    const [value, setValue] = useState("");
+export function ListItem({items, handleOnClick}) {
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addItem(value);
-        setValue("");
-    };
-
-    const addItem = (textInput) => {
-        const newItemList = [...items, textInput];
-        setItems(newItemList);
-    }
-
-    const changeValue = (e) => {
-        setValue(e.target.value);
-    }
     
+
     return(
         <div>
             <ul>
                 {items.map((item, index) => {
-                    return <li key={index}>{item}</li>
+                    return (
+                    <div key={index}>
+                        <li>{item}</li>
+                        <button onClick={() => handleOnClick(index)} >Done</button>
+                    </div>
+                        );
                 })}
             </ul>
-
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="newTask">New Task</label>
-                <input id="newTask" type="text" value={value} onChange={changeValue}/>
-                <input type="submit" value="Submit" />
-            </form>
+            
         </div>
     );
 }
