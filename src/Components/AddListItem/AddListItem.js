@@ -28,6 +28,10 @@ export function AddListItem() {
         newItem.splice(index, 1);
         setItems(newItem);
     };
+
+    const handleDeleteAll = () => {
+        setItems([]);
+    };
     
     return(
         <div>
@@ -37,6 +41,7 @@ export function AddListItem() {
                 <input id="newTask" type="text" value={value} onChange={changeValue}/>
                 <input type="submit" value="Submit" />
             </form>
+            <button onClick={handleDeleteAll}>Clear All</button>
         </div>
 
     );
